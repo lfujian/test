@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- 简化配置。相当于注册了DefaultAnnotationHandlerMapping和 AnnotationMethodHandlerAdapter两个bean， -->
+    <!--配置之后才能使用类似@Controller这样的注解。 -->
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="com.lfj.test.controller" /><!-- 控制器所在包 -->
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"><!-- 视图层 -->
+		<property name="prefix" value="/WEB-INF/jsp/" /><!-- 目录 -->
+		<property name="suffix" value=".jsp" /><!-- 文件 -->
+	</bean>
+
+	<mvc:resources mapping="/images/**" location="/images/" /><!-- 加载静态资源配置 -->
+	<mvc:resources mapping="/fonts/**" location="/fonts/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources location="/" mapping="/**.ico"/><!-- 标题栏图标 -->
+</beans>
